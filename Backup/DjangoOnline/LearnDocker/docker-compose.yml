@@ -1,0 +1,47 @@
+version: "3.6"
+
+volumes: 
+    - postgres_data:
+services: 
+    nginx:
+        image: nginx:alpine 
+        container_name: duynnd
+        ports: 
+            - "80:80"
+        volumes: 
+            - ./src:/src
+            - ./config/nginx:/etc/nginx/conf.d 
+           
+        depends_on: 
+            - web
+        networks: 
+            - djangowork
+    
+    web:
+        build: 
+            context: .
+            dockerfile: compose/django/Dockerfile
+        container_name: webdjango
+        depends_on: 
+            - db
+        volumes: 
+            - ./src:/src
+        networks: 
+            - djangowork
+        expose: 
+            - "8000"
+
+    db:
+        restart: always
+        image: postgres:10
+        ports: 
+            - "5432:5432"
+        volumes: 
+            - postgres_data:/var/lib/postgresql/data/
+    
+    networks: 
+        djangowork:
+            driver: bridge
+    
+
+        

@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+<h1>Template polls</h1>
+<p>Hello world!</p>
+<p>My name: <b>{{name}}</b></p>
+<p>My product:</p>
+<ul>
+    {% for item in items %}
+    {% if item != 'handsome' %}
+    <li>{{item}}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}

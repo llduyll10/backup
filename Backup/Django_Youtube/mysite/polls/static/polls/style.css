@@ -1,0 +1,22 @@
+.header{
+    padding: 30px;
+    background-color: #ccc;
+    color: #fff;
+}
+.menu{
+    background-color: #333;
+    color: #fff;
+
+}
+.menu ul li{
+    float: left;
+    padding: 6px;
+}
+.menu:after{
+    clear: both;
+    display: table;
+    content: '';
+}
+.menu ul{
+    list-style-type: none;
+}
